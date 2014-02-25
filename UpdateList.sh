@@ -35,7 +35,7 @@ declare -a URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&arch
             )
 
 touch "$LIST" #touch resulting file
-index=0
+declare -i index=0
 for url in "${URLs[@]}"; do #For each url
     echo "Now downloading list ${TITLEs[$index]}"
     wget -q -O "list.gz" "$url"            #download the zipped version
@@ -45,7 +45,7 @@ for url in "${URLs[@]}"; do #For each url
     cat "list" >> "$LIST"  #append to list file
     echo "Deleting downloaded list file..."
     rm "list"                           #Delete downloaded list file
-    index+=1
+    index=$((index+=1))
 done
 wc $LIST #print out some list stats
 echo "Done!"
