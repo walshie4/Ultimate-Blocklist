@@ -32,9 +32,14 @@ declare -a URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&arch
 
 touch "$LIST" #touch resulting file
 
-for url in "${URLs[@]}"; do            #For each url
+for url in "${URLs[@]}"; do #For each url
+    echo "Now downloading list @ $url"
     wget -O "list.gz" "$url"            #download the zipped version
-    gunzip "list.gz"                    #unarchive the list
+    echo "Unzipping..."
+    gunzip "list.gz"       #unarchive the list
+    echo "Adding IP's to list file..."
     cat "list" >> "$LIST"  #append to list file
+    echo "Deleting downloaded list file..."
     rm "list"                           #Delete downloaded list file
 done
+echo "Done!"
