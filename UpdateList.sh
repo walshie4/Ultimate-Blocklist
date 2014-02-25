@@ -42,4 +42,5 @@ for url in "${URLs[@]}"; do #For each url
     echo "Deleting downloaded list file..."
     rm "list"                           #Delete downloaded list file
 done
+wc $LIST #print out some list stats
 echo "Done!"
