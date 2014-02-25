@@ -38,7 +38,7 @@ touch "$LIST" #touch resulting file
 index=0
 for url in "${URLs[@]}"; do #For each url
     echo "Now downloading list ${TITLEs[$index]}"
-    wget -O "list.gz" "$url"            #download the zipped version
+    wget -q -O "list.gz" "$url"            #download the zipped version
     echo "Unzipping..."
     gunzip "list.gz"       #unarchive the list
     echo "Adding IP's to list file..."
