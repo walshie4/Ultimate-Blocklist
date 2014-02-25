@@ -10,4 +10,4 @@ A super blocklist made from the most popular ones on the web!
      * Move the `lists.txt` file to the `/blocklists/` directory
      * Note: You can find your `/blocklists/` directory [here](https://trac.transmissionbt.com/wiki/ConfigFiles)
  * <b>Use a pre-generated list</b>
-     * The list is <b>not</b> yet hosted, however it will be soon!
+     * The list is hosted and available at the url `http://download847.mediafire.com/18d81fiysgvg/h6raqc326niak73/list.txt`
