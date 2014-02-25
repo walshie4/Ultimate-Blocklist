@@ -45,6 +45,7 @@ for url in "${URLs[@]}"; do #For each url
     cat "list" >> "$LIST"  #append to list file
     echo "Deleting downloaded list file..."
     rm "list"                           #Delete downloaded list file
+    echo
     index=$((index+=1))
 done
 wc $LIST #print out some list stats
