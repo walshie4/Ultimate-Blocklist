@@ -34,6 +34,10 @@ declare -a URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&arch
             "http://list.iblocklist.com/?list=lljggjrpmefcwqknpalp&fileformat=p2p&archiveformat=gz"
             )
 
+if [[ -f "$LIST" ]]; then #if output file exists
+    echo "The output file '$LIST' already exists! Please rename of move this file."
+    exit 1
+fi
 touch "$LIST" #touch resulting file
 declare -i index=0
 for url in "${URLs[@]}"; do #For each url
