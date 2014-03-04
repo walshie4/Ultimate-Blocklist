@@ -12,10 +12,11 @@ A super blocklist made from the most popular ones on the web!
  * <b>Use a pre-generated list</b>
      * The list is hosted and available at the url `http://download847.mediafire.com/18d81fiysgvg/h6raqc326niak73/list.txt`
  * <b>Setup on a webserver</b>
-     * Upload the folder content to your webserver
-     * Make sure th permission are right (755) for the scripts
+     * Upload the folder content (or clone this repo) to your webserver
+     * Make sure the permission are right (755) for the scripts
      * Add to your crontab
      		Daily: 00 00 * * * ./cron_rebuild-list.sh
      * Make your Torrent app point to your webserver like so: http://myserver.com/list.php to download the newly generated list
 
+Orignal Author: Adam Walsh <adw7422@rit.edu>
 Contributor: Alexandre Vallières-Lagacé <alexandre@vallier.es>
