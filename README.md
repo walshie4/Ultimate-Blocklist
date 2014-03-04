@@ -17,3 +17,5 @@ A super blocklist made from the most popular ones on the web!
      * Add to your crontab
      		Daily: 00 00 * * * ./cron_rebuild-list.sh
      * Make your Torrent app point to your webserver like so: http://myserver.com/list.php to download the newly generated list
+
+Contributor: Alexandre Vallières-Lagacé <alexandre@vallier.es>
