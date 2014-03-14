@@ -19,4 +19,5 @@ A super blocklist made from the most popular ones on the web!
      * Make your Torrent app point to your webserver like so: http://myserver.com/list.php to download the newly generated list
 
 Orignal Author: Adam Walsh <adw7422@rit.edu>
+
 Contributor: Alexandre Vallières-Lagacé <alexandre@vallier.es>
