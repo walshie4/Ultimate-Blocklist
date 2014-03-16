@@ -35,7 +35,7 @@ declare -a URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&arch
             )
 
 if [[ -f "$LIST" ]]; then #if output file exists
-    echo "The output file '$LIST' already exists! Please rename of move this file."
+    echo "The output file '$LIST' already exists! Please rename or move this file."
     exit 1
 fi
 touch "$LIST" #touch resulting file
