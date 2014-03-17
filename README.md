@@ -9,8 +9,9 @@ A super blocklist made from the most popular ones on the web!
      * Run using `./UpdateList.sh`
      * Move the `lists.txt` file to the `/blocklists/` directory
      * Note: You can find your `/blocklists/` directory [here](https://trac.transmissionbt.com/wiki/ConfigFiles)
- * <b>Use a pre-generated list</b>
-     * The list is hosted and available at the url `http://download847.mediafire.com/18d81fiysgvg/h6raqc326niak73/list.txt`
+     * Your blocklist will be loaded the next time you start Transmission
+* <b>Use a pre-generated list</b>
+     * The list is hosted and available at the url ``
  * <b>Setup on a webserver</b>
      * Upload the folder content (or clone this repo) to your webserver
      * Make sure the permission are right (755) for the scripts
