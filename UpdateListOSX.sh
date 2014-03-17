@@ -42,7 +42,7 @@ touch "$LIST" #touch resulting file
 declare -i index=0
 for url in "${URLs[@]}"; do #For each url
     echo "Now downloading list ${TITLEs[$index]}"
-    curl -o "list.gz" "$url"            #download the zipped version
+    curl "$url" -L -o "list.gz"            #download the zipped version
     echo "Unzipping..."
     gunzip "list.gz"       #unarchive the list
     echo "Adding IP's to list file..."
