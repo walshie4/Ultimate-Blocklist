@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ultimate-blocklist by walshie4</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ultimate-blocklist</h1>
+        <p>A super blocklist made from the most popular ones on the web!</p>
+
+        <p class="view"><a href="https://github.com/walshie4/Ultimate-Blocklist">View the Project on GitHub <small>walshie4/Ultimate-Blocklist</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/walshie4/Ultimate-Blocklist/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/walshie4/Ultimate-Blocklist/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/walshie4/Ultimate-Blocklist">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="ultimate-blocklist" class="anchor" href="#ultimate-blocklist"><span class="octicon octicon-link"></span></a>Ultimate-Blocklist</h1>
+
+<p>A super blocklist made from the most popular ones on the web!</p>
+
+<p><b>How to use:</b></p>
+
+<ul>
+<li>
+<b>Generate a local brand-new list</b>
+
+<ul>
+<li>Run using <code>./UpdateList.sh</code>
+</li>
+<li>Move the <code>lists.txt</code> file to the <code>/blocklists/</code> directory</li>
+<li>Note: You can find your <code>/blocklists/</code> directory <a href="https://trac.transmissionbt.com/wiki/ConfigFiles">here</a>
+</li>
+<li>Your blocklist will be loaded the next time you start Transmission
+
+<ul>
+<li><b>Use a pre-generated list</b></li>
+</ul>
+</li>
+<li>The list is hosted and available at the url <code>http://download1979.mediafire.com/ocqugqyet8kg/ep841wv4aef2zwd/list.txt</code>
+
+<ul>
+<li>Updated 3/16/2014</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<b>Setup on a webserver</b>
+
+<ul>
+<li>Upload the folder content (or clone this repo) to your webserver</li>
+<li>Make sure the permission are right (755) for the scripts</li>
+<li>Add to your crontab
+    Daily: 00 00 * * * ./cron_rebuild-list.sh</li>
+<li>Make your Torrent app point to your webserver like so: <a href="http://myserver.com/list.php">http://myserver.com/list.php</a> to download the newly generated list</li>
+</ul>
+</li>
+</ul><p>Orignal Author: Adam Walsh <a href="mailto:adw7422@rit.edu">adw7422@rit.edu</a></p>
+
+<p>Contributor: Alexandre Vallières-Lagacé <a href="mailto:alexandre@vallier.es">alexandre@vallier.es</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/walshie4">walshie4</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
