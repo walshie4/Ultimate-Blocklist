@@ -52,7 +52,7 @@ for url in "${URLs[@]}"; do #For each url
     echo
     index=$((index+=1))
 done
-gzip -c list.txt > list.gz
 echo "Zipping..."
+gzip -c list.txt > list.gz
 wc $LIST #print out some list stats
 echo "Done!"
