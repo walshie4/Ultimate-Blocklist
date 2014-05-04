@@ -21,7 +21,7 @@ yours can be logged, neither this nor any other IP block software can protect yo
      * Upload the folder content (or clone this repo) to your webserver
      * Make sure the permission are right (755) for the scripts
      * Add to your crontab
-     		Daily: 00 00 * * * ./cron_rebuild-list.sh
+     		Daily: 00 00 * * * ./UpdateList.sh (or ./UpdateListOSX.sh if on a OSX machine)
      * Make your Torrent app point to your webserver like so: http://myserver.com/list.txt to download the newly generated list
 
 Orignal Author: Adam Walsh <adw7422@rit.edu>
