@@ -1,0 +1,3 @@
+test: 
+	python UltimateBlockList.py
+
