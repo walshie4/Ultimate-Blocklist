@@ -3,4 +3,4 @@ test: clean
 push: clean
 	git push origin master
 clean:
-	rm *.txt
+	rm -f *.txt
