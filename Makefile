@@ -1,5 +1,6 @@
-test: 
+test: clean
 	python UltimateBlockList.py
-push:
+push: clean
 	git push origin master
-
+clean:
+	rm *.txt
