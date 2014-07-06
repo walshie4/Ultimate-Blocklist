@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup as mksoup
 print("Getting list page")
 soup = mksoup(requests.get("https://www.iblocklist.com/lists.php").text)
 for row in soup.find_all("tr")[1:]:#for each table row
-    print(list(row.children)[0])
-         #   .split("\"")[1])
+    section = str(list(row.children)[0])
+    print section.split("\"")
     break
 
