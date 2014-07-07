@@ -17,7 +17,7 @@ def get_value_from(url):
 def process(url):
     contents = requests.get(url).text
     f = open("blocklist.txt", "a+")
-    f.write(contents.encode("iso-8859-15", "replace"))
+    f.write(contents.encode("ascii", "replace"))
     f.close()
 
 if __name__=="__main__":
