@@ -16,7 +16,7 @@ def get_value_from(url):
 
 def process(url):
     contents = requests.get(url).text
-    f = open("blocklist.txt", "a+")
+    f = open("blocklist.txt", "a+")#TODO add check for if it exists
     f.write(contents.encode("ascii", "replace"))
     f.close()
 
@@ -34,6 +34,8 @@ if __name__=="__main__":
         value = get_value_from(links[link])
         if value == "subscription":
             print "Blocklist is not available for free download D:"
+        elif value == "unavailable":
+            print "URL is unavailable"
         else:#download and add this sucker
             process(value)
 
