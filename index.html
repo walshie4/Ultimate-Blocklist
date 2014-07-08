@@ -40,7 +40,15 @@
 yours can be logged, neither this nor any other IP block software can protect you from that. Read more <a href="http://www.reddit.com/r/torrents/comments/17gold">here</a>.</p>
 
 <h2>
-<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How to use:</h2>
+<a name="how-to-python-version" class="anchor" href="#how-to-python-version"><span class="octicon octicon-link"></span></a>How to: (Python Version)</h2>
+
+<ul>
+<li>Download latest release</li>
+<li>Run <code>python UltimateBlockList.py</code>
+</li>
+<li>Wait and your blocklist will be available in <code>blocklist.txt</code> when the script exits</li>
+</ul><h2>
+<a name="how-to-use-shell-script-verison" class="anchor" href="#how-to-use-shell-script-verison"><span class="octicon octicon-link"></span></a>How to use: (Shell-Script Verison)</h2>
 
 <ul>
 <li>
@@ -74,13 +82,11 @@ yours can be logged, neither this nor any other IP block software can protect yo
 <li>Upload the folder content (or clone this repo) to your webserver</li>
 <li>Make sure the permission are right (755) for the scripts</li>
 <li>Add to your crontab
-    Daily: 00 00 * * * ./cron_rebuild-list.sh</li>
-<li>Make your Torrent app point to your webserver like so: <a href="http://myserver.com/list.php">http://myserver.com/list.php</a> to download the newly generated list</li>
+    Daily: 00 00 * * * ./UpdateList.sh (or ./UpdateListOSX.sh if on a OSX machine)</li>
+<li>Make your Torrent app point to your webserver like so: <a href="http://myserver.com/list.txt">http://myserver.com/list.txt</a> to download the newly generated list</li>
 </ul>
 </li>
-</ul><p>Orignal Author: Adam Walsh <a href="mailto:adw7422@rit.edu">adw7422@rit.edu</a></p>
-
-<p>Contributor: Alexandre Vallières-Lagacé <a href="mailto:alexandre@vallier.es">alexandre@vallier.es</a></p>
+</ul><p>Special thanks to <a href="https://github.com/alphapapa">alphapapa</a> for the idea behind the design of the new script.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/walshie4">walshie4</a></p>
