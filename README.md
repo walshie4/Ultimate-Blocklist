@@ -7,7 +7,13 @@ A super blocklist made from the most popular ones on the web!
 When using the BitTorrent protocol using blocklists does *nothing*! If you are a part of the swarm of ip's
 yours can be logged, neither this nor any other IP block software can protect you from that. Read more [here](http://www.reddit.com/r/torrents/comments/17gold).
 
-##How to use:
+##How to: (Python Version)
+
+* Download latest release
+* Run `python UltimateBlockList.py`
+* Wait and your blocklist will be available in `blocklist.txt` when the script exits
+
+##How to use: (Shell-Script Verison)
 
  * <b>Generate a local brand-new list</b>
      * Run using `./UpdateList.sh`
@@ -24,6 +30,5 @@ yours can be logged, neither this nor any other IP block software can protect yo
      		Daily: 00 00 * * * ./UpdateList.sh (or ./UpdateListOSX.sh if on a OSX machine)
      * Make your Torrent app point to your webserver like so: http://myserver.com/list.txt to download the newly generated list
 
-Orignal Author: Adam Walsh <adw7422@rit.edu>
+Special thanks to [alphapapa](https://github.com/alphapapa) for the idea behind the design of the new script.
 
-Contributor: Alexandre Vallières-Lagacé <alexandre@vallier.es>
