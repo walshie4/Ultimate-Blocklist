@@ -37,11 +37,21 @@ declare -a URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&arch
 if [[ -f "$LIST" ]]; then #if output file exists
     rm $LIST #delete the old list
 fi
+
+if [[ `command -v wget` ]]; then
+	function download_zipped_version() { wget -q -O "list.gz" "$1"; }
+elif [[ `command -v curl` ]]; then
+	function download_zipped_version() { curl "$1" -L -o "list.gz"; }
+else
+	echo "UpdateList.sh: 'wget' or 'curl' required but not found. Aborting."
+	exit 1
+fi
+
 touch "$LIST" #touch output file
 declare -i index=0
 for url in "${URLs[@]}"; do #For each url
     echo "Now downloading list ${TITLEs[$index]}"
-    wget -q -O "list.gz" "$url"            #download the zipped version
+    download_zipped_version $url
     echo "Unzipping..."
     gunzip "list.gz"       #unarchive the list
     echo "Adding IP's to list file..."
