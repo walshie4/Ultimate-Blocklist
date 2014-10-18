@@ -15,6 +15,8 @@ else # we're on a Mac!
 	path_to_config=$HOME/Library/Application\ Support/Transmission
 fi
 
+blocklist_path=$path_to_config/"blocklists"
+
 #---END CONFIG---
 declare -a TITLEs=("Bluetack LVL 1" "Bluetack LVL 2" "Bluetack LVL 3" "Bluetack edu" "Bluetack ads"
         "Bluetack spyware" "Bluetack proxy" "Bluetack badpeers" "Bluetack Microsoft" "Bluetack spider"
