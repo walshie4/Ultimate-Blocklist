@@ -8,6 +8,13 @@
 #-----CONFIG-----
 LIST="list.txt"     #This is the name of the final list file
 PATH_TO_LIST="~/"   #This is the path to the final list file
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	path_to_config=$HOME/.config/transmission
+else # we're on a Mac!
+	path_to_config=$HOME/Library/Application\ Support/Transmission
+fi
+
 #---END CONFIG---
 declare -a TITLEs=("Bluetack LVL 1" "Bluetack LVL 2" "Bluetack LVL 3" "Bluetack edu" "Bluetack ads"
         "Bluetack spyware" "Bluetack proxy" "Bluetack badpeers" "Bluetack Microsoft" "Bluetack spider"
@@ -62,6 +69,10 @@ for url in "${URLs[@]}"; do #For each url
     index=$((index+=1))
 done
 echo "Zipping..."
-gzip -c list.txt > list.gz
+gzip -c $LIST > list.gz
 wc $LIST #print out some list stats
+
+echo "Copying list to default blocklist directory..."
+cp $LIST "$blocklist_path/$LIST"
+
 echo "Done!"
