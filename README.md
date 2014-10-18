@@ -21,7 +21,7 @@ yours can be logged, neither this nor any other IP block software can protect yo
 
  * <b>Generate a local brand-new list</b>
      * Run using `./UpdateList.sh`
-     * Move the `lists.txt` file to the `/blocklists/` directory
+     * Move the `lists.txt` file to the `/blocklists/` directory (if you use your system's default location, this will be done automatically)
      * Note: You can find your `/blocklists/` directory [here](https://trac.transmissionbt.com/wiki/ConfigFiles)
      * Your blocklist will be loaded the next time you start Transmission
  * <b>Use a pre-generated list</b>
@@ -31,7 +31,7 @@ yours can be logged, neither this nor any other IP block software can protect yo
      * Upload the folder content (or clone this repo) to your webserver
      * Make sure the permission are right (755) for the scripts
      * Add to your crontab
-     		Daily: 00 00 * * * ./UpdateList.sh (or ./UpdateListOSX.sh if on a OSX machine)
+     		Daily: 00 00 * * * ./UpdateList.sh
      * Make your Torrent app point to your webserver like so: http://myserver.com/list.txt to download the newly generated list
 
 Special thanks to [alphapapa](https://github.com/alphapapa) for the idea behind the design of the new script.
