@@ -8,6 +8,15 @@
 #-----CONFIG-----
 LIST="list.txt"     #This is the name of the final list file
 PATH_TO_LIST="~/"   #This is the path to the final list file
+
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	path_to_config=$HOME/.config/transmission
+else # we're on a Mac!
+	path_to_config=$HOME/Library/Application\ Support/Transmission
+fi
+
+blocklist_path=$path_to_config/"blocklists"
+
 #---END CONFIG---
 declare -a TITLEs=("Bluetack LVL 1" "Bluetack LVL 2" "Bluetack LVL 3" "Bluetack edu" "Bluetack ads"
         "Bluetack spyware" "Bluetack proxy" "Bluetack badpeers" "Bluetack Microsoft" "Bluetack spider"
@@ -37,11 +46,21 @@ declare -a URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&arch
 if [[ -f "$LIST" ]]; then #if output file exists
     rm $LIST #delete the old list
 fi
+
+if [[ `command -v wget` ]]; then
+	function download_zipped_version() { wget -q -O "list.gz" "$1"; }
+elif [[ `command -v curl` ]]; then
+	function download_zipped_version() { curl "$1" -L -o "list.gz"; }
+else
+	echo "UpdateList.sh: 'wget' or 'curl' required but not found. Aborting."
+	exit 1
+fi
+
 touch "$LIST" #touch output file
 declare -i index=0
 for url in "${URLs[@]}"; do #For each url
     echo "Now downloading list ${TITLEs[$index]}"
-    wget -q -O "list.gz" "$url"            #download the zipped version
+    download_zipped_version $url
     echo "Unzipping..."
     gunzip "list.gz"       #unarchive the list
     echo "Adding IP's to list file..."
@@ -52,6 +71,10 @@ for url in "${URLs[@]}"; do #For each url
     index=$((index+=1))
 done
 echo "Zipping..."
-gzip -c list.txt > list.gz
+gzip -c $LIST > list.gz
 wc $LIST #print out some list stats
+
+echo "Copying list to default blocklist directory..."
+cp $LIST "$blocklist_path/$LIST"
+
 echo "Done!"
