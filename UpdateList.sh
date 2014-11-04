@@ -7,23 +7,47 @@
 
 #-----CONFIG-----
 LIST="list.txt"     #This is the name of the final list file
-PATH_TO_LIST="~/"   #This is the path to the final list file
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	path_to_config=$HOME/.config/transmission
-else # we're on a Mac!
-	path_to_config=$HOME/Library/Application\ Support/Transmission
+while getopts ":c:h" opt; do
+	case $opt in
+		c)
+			CONF_DIR=$OPTARG
+			;;
+		h)
+      			echo "Usage: -c config dir"
+      			exit 0
+      			;;
+		\?)
+    			echo "Invalid option: -$OPTARG" >&2
+    			exit 1
+    			;;
+    		:)
+      			echo "Option -$OPTARG requires an argument." >&2
+      			exit 1
+      			;;
+	esac
+done
+
+if [[ ! -z $CONF_DIR ]]; then
+	path_to_config=$CONF_DIR
+else
+	if [[ $OSTYPE == "linux-gnu" ]]; then
+		path_to_config=$HOME/.config/transmission
+	else # we're on a Mac!
+		path_to_config=$HOME/Library/Application\ Support/Transmission
+	fi
 fi
 
-blocklist_path=$path_to_config/"blocklists"
+blocklist_path=$path_to_config/blocklists
 
 #---END CONFIG---
-declare -a TITLEs=("Bluetack LVL 1" "Bluetack LVL 2" "Bluetack LVL 3" "Bluetack edu" "Bluetack ads"
+
+TITLEs=("Bluetack LVL 1" "Bluetack LVL 2" "Bluetack LVL 3" "Bluetack edu" "Bluetack ads"
         "Bluetack spyware" "Bluetack proxy" "Bluetack badpeers" "Bluetack Microsoft" "Bluetack spider"
-        "Bluetack hijacked" "Bluetac dshield" "Bluetack forumspam" "Bluetack webexploit" "TBG Primary Threats"
+        "Bluetack hijacked" "Bluetack dshield" "Bluetack forumspam" "Bluetack webexploit" "TBG Primary Threats"
         "TBG General Corporate Range" "TBG Buissness ISPs" "TBG Educational Institutions"
         )
-declare -a URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
+URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
             "http://list.iblocklist.com/?list=bt_level2&fileformat=p2p&archiveformat=gz"
             "http://list.iblocklist.com/?list=bt_level3&fileformat=p2p&archiveformat=gz"
             "http://list.iblocklist.com/?list=bt_edu&fileformat=p2p&archiveformat=gz"
@@ -43,21 +67,18 @@ declare -a URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&arch
             "http://list.iblocklist.com/?list=lljggjrpmefcwqknpalp&fileformat=p2p&archiveformat=gz"
             )
 
-if [[ -f "$LIST" ]]; then #if output file exists
-    rm $LIST #delete the old list
-fi
+rm -f $LIST #delete the old list
 
-if [[ `command -v wget` ]]; then
-	function download_zipped_version() { wget -q -O "list.gz" "$1"; }
-elif [[ `command -v curl` ]]; then
-	function download_zipped_version() { curl "$1" -L -o "list.gz"; }
+if wget=$(command -v wget); then
+	function download_zipped_version() { $wget -q -O "list.gz" "$1"; }
+elif curl=$(command -v curl); then
+	function download_zipped_version() { $curl "$1" -L -o "list.gz"; }
 else
-	echo "UpdateList.sh: 'wget' or 'curl' required but not found. Aborting."
+	echo "$0: 'wget' or 'curl' required but not found. Aborting."
 	exit 1
 fi
 
-touch "$LIST" #touch output file
-declare -i index=0
+index=0
 for url in "${URLs[@]}"; do #For each url
     echo "Now downloading list ${TITLEs[$index]}"
     download_zipped_version $url
@@ -71,10 +92,11 @@ for url in "${URLs[@]}"; do #For each url
     index=$((index+=1))
 done
 echo "Zipping..."
-gzip -c $LIST > list.gz
-wc $LIST #print out some list stats
+gzip -c $LIST > list.gz || exit 1
+wc $LIST || exit 1 #print out some list stats
 
 echo "Copying list to default blocklist directory..."
-cp $LIST "$blocklist_path/$LIST"
+cp list.gz "$blocklist_path/" || exit 1
+rm -f list.* || exit 1
 
 echo "Done!"
