@@ -82,7 +82,6 @@ die() {
 }
 
 rm -f $LIST #delete the old list
-rm -f $blocklist_path/list.* # delete old lists from transmission config dir
 
 if wget=$(command -v wget); then
 	download() { 
