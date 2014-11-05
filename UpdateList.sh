@@ -34,12 +34,12 @@ done
 
 if [[ ! -z $CONF_DIR ]]; then
 	path_to_config=$CONF_DIR
+
+elif [[ $OSTYPE =~ "darwin" ]]; then
+	path_to_config=$HOME/Library/Application\ Support/Transmission
+
 else
-	if [[ $OSTYPE == "linux-gnu" ]]; then
-		path_to_config=$HOME/.config/transmission
-	else # we're on a Mac!
-		path_to_config=$HOME/Library/Application\ Support/Transmission
-	fi
+	path_to_config=$HOME/.config/transmission
 fi
 
 blocklist_path=$path_to_config/blocklists
@@ -81,9 +81,8 @@ die() {
 	exit 1
 }
 
-
-
 rm -f $LIST #delete the old list
+rm -f $blocklist_path/list.* # delete old lists from transmission config dir
 
 if wget=$(command -v wget); then
 	download() { 
@@ -94,13 +93,12 @@ elif curl=$(command -v curl); then
 		$curl "$1" -L -o "list.gz"
 	}
 else
-	echo "$0: 'wget' or 'curl' required but not found. Aborting."
-	exit 1
+	die "$0: 'wget' or 'curl' required but not found. Aborting."
 fi
 
 for title in "${!urls[@]}"; do
 	    info "Downloading list $title"
-	    download "${urls[$title]}" || die "Cannot download from ${titles[$title]}"
+	    download "${urls[$title]}" || die "Cannot download from ${urls[$title]}"
 	    info "Adding IP's to list file..."
 	    zcat "list.gz" >> "$LIST"  || die "Cannot append to a list" #append to list file
 	    rm "list.gz" || die "Cannot remove downloaded file"
@@ -121,3 +119,4 @@ wc -l $LIST || die "Cannot count lines" #print out some list stats
 rm -f list.* || die "Cannot cleanup"
 
 info "Done!"
+info "Restart transmission"
