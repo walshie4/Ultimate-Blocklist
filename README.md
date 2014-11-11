@@ -21,7 +21,8 @@ yours can be logged, neither this nor any other IP block software can protect yo
 
  * <b>Generate a local brand-new list</b>
      * Run using `./UpdateList.sh`
-     * '-c path_to_transmission_conf_dir' (if you use your system's default location, this option is unnecessary), '-z' flag will create gzipped file ( transmission daemon 2.84 won't load gzipped file properly )
+     * `-c path_to_transmission_conf_dir` (if you use your system's default location, this option is unnecessary)
+     * `-z` flag will create gzipped file ( transmission daemon 2.84 won't load gzipped file properly )
      * Note: You can find your config directory [here](https://trac.transmissionbt.com/wiki/ConfigFiles)
      * Your blocklist will be loaded the next time you start Transmission
  * <b>Use a pre-generated list</b>
