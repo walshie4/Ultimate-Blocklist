@@ -5,6 +5,7 @@
 #Maintained @ https://github.com/walshie4/Ultimate-Blocklist
 
 import requests
+import urllib
 from bs4 import BeautifulSoup as mksoup
 import gzip
 
@@ -15,9 +16,16 @@ def get_value_from(url):
     return str(soup.find_all("input")[-1]).split("\"")[-2]
 
 def process(url):
-    contents = requests.get(url).text
+    handle = urllib.urlopen(url)
+    with open('ultBlockList.tmp.gz', 'wb') as out:
+        while True:
+            data = handle.read(1024)
+            if len(data) == 0: break
+            out.write(data)
+    contents = gzip.GzipFile('ultBlockList.tmp.gz')
     f = open("blocklist.txt", "a+")#TODO add check for if it exists
-    f.write(contents.encode("ascii", "replace"))
+    for line in contents:
+        f.write(line)
     f.close()
 
 if __name__=="__main__":
