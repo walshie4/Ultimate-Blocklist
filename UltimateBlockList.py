@@ -8,6 +8,7 @@ import requests
 import urllib
 from bs4 import BeautifulSoup as mksoup
 import gzip
+import os
 
 BASE = "https://www.iblocklist.com"
 
@@ -27,6 +28,7 @@ def process(url):
     for line in contents:
         f.write(line)
     f.close()
+    os.remove('ultBlockList.tmp.gz')
 
 if __name__=="__main__":
     print("Getting list page")
