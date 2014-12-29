@@ -14,7 +14,8 @@ yours can be logged, neither this nor any other IP block software can protect yo
 ##How to: (Python Version)
 
 * Download latest release
-* Create a virtual environment (optional) ``virtualenv --no-site-packages env``
+* (optional) Create a virtual environment ``virtualenv --no-site-packages env``
+* (optional) Activate the virtual environment ``source env/bin/activate``
 * Install the dependencies ``pip install -r requirements.pip``
 * Run `python UltimateBlockList.py`
 * Wait and your blocklist will be available in `blocklist.txt` when the script exits
