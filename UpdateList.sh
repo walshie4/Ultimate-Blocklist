@@ -44,26 +44,30 @@ fi
 
 blocklist_path=$path_to_config/blocklists
 
-declare -A urls
-urls["Bluetack LVL 1"]="http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
-urls["Bluetack LVL 2"]="http://list.iblocklist.com/?list=bt_level2&fileformat=p2p&archiveformat=gz"
-urls["Bluetack LVL 3"]="http://list.iblocklist.com/?list=bt_level3&fileformat=p2p&archiveformat=gz"
-urls["Bluetack edu"]="http://list.iblocklist.com/?list=bt_edu&fileformat=p2p&archiveformat=gz"
-urls["Bluetack ads"]="http://list.iblocklist.com/?list=bt_ads&fileformat=p2p&archiveformat=gz"
-urls["Bluetack spyware"]="http://list.iblocklist.com/?list=bt_spyware&fileformat=p2p&archiveformat=gz"
-urls["Bluetack proxy"]="http://list.iblocklist.com/?list=bt_proxy&fileformat=p2p&archiveformat=gz"
-urls["Bluetack badpeers"]="http://list.iblocklist.com/?list=bt_templist&fileformat=p2p&archiveformat=gz"
-urls["Bluetack Microsoft"]="http://list.iblocklist.com/?list=bt_microsoft&fileformat=p2p&archiveformat=gz"
-urls["Bluetack spider"]="http://list.iblocklist.com/?list=bt_spider&fileformat=p2p&archiveformat=gz"
-urls["Bluetack hijacked"]="http://list.iblocklist.com/?list=bt_hijacked&fileformat=p2p&archiveformat=gz"
-urls["Bluetack dshield"]="http://list.iblocklist.com/?list=bt_dshield&fileformat=p2p&archiveformat=gz"
-urls["Bluetack forumspam"]="http://list.iblocklist.com/?list=ficutxiwawokxlcyoeye&fileformat=p2p&archiveformat=gz"
-urls["Bluetack webexploit"]="http://list.iblocklist.com/?list=ghlzqtqxnzctvvajwwag&fileformat=p2p&archiveformat=gz"
-urls["TBG Primary Threats"]="http://list.iblocklist.com/?list=ijfqtofzixtwayqovmxn&fileformat=p2p&archiveformat=gz"
-urls["TBG General Corporate Range"]="http://list.iblocklist.com/?list=ecqbsykllnadihkdirsh&fileformat=p2p&archiveformat=gz"
-urls["TBG Buissness ISPs"]="http://list.iblocklist.com/?list=jcjfaxgyyshvdbceroxf&fileformat=p2p&archiveformat=gz"
-urls["TBG Educational Institutions"]="http://list.iblocklist.com/?list=lljggjrpmefcwqknpalp&fileformat=p2p&archiveformat=gz"
-
+TITLEs=("Bluetack LVL 1" "Bluetack LVL 2" "Bluetack LVL 3" "Bluetack edu" "Bluetack ads"
+"Bluetack spyware" "Bluetack proxy" "Bluetack badpeers" "Bluetack Microsoft" "Bluetack spider"
+"Bluetack hijacked" "Bluetack dshield" "Bluetack forumspam" "Bluetack webexploit" "TBG Primary Threats"
+"TBG General Corporate Range" "TBG Buissness ISPs" "TBG Educational Institutions"
+)
+URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_level2&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_level3&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_edu&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_ads&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_spyware&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_proxy&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_templist&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_microsoft&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_spider&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_hijacked&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=bt_dshield&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=ficutxiwawokxlcyoeye&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=ghlzqtqxnzctvvajwwag&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=ijfqtofzixtwayqovmxn&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=ecqbsykllnadihkdirsh&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=jcjfaxgyyshvdbceroxf&fileformat=p2p&archiveformat=gz"
+"http://list.iblocklist.com/?list=lljggjrpmefcwqknpalp&fileformat=p2p&archiveformat=gz"
+)
 #---END CONFIG---
 
 if tty -s; then
@@ -95,13 +99,16 @@ else
 	die "$0: 'wget' or 'curl' required but not found. Aborting."
 fi
 
-for title in "${!urls[@]}"; do
+index=0
+for url in "${URLs[@]}"; do
+        title="${TITLEs[$index]}"
 	    info "Downloading list $title"
-	    download "${urls[$title]}" || die "Cannot download from ${urls[$title]}"
+	    download "$url" || die "Cannot download from $url"
 	    info "Adding IP's to list file..."
-	    zcat "list.gz" >> "$LIST"  || die "Cannot append to a list" #append to list file
+	    gunzip -c "list.gz" >> "$LIST"  || die "Cannot append to list" #append to list file
 	    rm "list.gz" || die "Cannot remove downloaded file"
 	    info ""
+        index=$((index+=1))
 done
 
 if [[ ! -z $zip ]]; then
