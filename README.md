@@ -56,7 +56,7 @@ Special thanks to [alphapapa](https://github.com/alphapapa) for the idea behind 
 
 ##Dropbox Version
 
-* **Build with [Docker](#dropbox-version)**
+* **Build with [Docker](#docker-version)**
 
 * Setup a cron job to run the script using docker and upload to Dropbox
 using the environment variable `DROPBOX_ACCESS_TOKEN`.
