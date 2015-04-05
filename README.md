@@ -14,11 +14,15 @@ yours can be logged, neither this nor any other IP block software can protect yo
 ##How to: (Docker Version)
 
 ```
-git clone https://github.com/walshie4/Ultimate-Blocklist.git ubl
-cd ubl
 docker build -t ubl .
-docker run -it --name ubl
+docker run -it --name ubl ubl
 docker cp ubl:/usr/src/app/blocklist.txt .
+```
+
+or
+
+```
+make docker
 ```
 
 ##How to: (Python Version)
