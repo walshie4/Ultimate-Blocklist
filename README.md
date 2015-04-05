@@ -11,6 +11,16 @@ A super blocklist made from the most popular ones on the web!
 When using the BitTorrent protocol using blocklists does *nothing*! If you are a part of the swarm of ip's
 yours can be logged, neither this nor any other IP block software can protect you from that. Read more [here](http://www.reddit.com/r/torrents/comments/17gold).
 
+##How to: (Docker Version)
+
+```
+git clone https://github.com/walshie4/Ultimate-Blocklist.git ubl
+cd ubl
+docker build -t ubl .
+docker run -it --name ubl
+docker cp ubl:/usr/src/app/blocklist.txt .
+```
+
 ##How to: (Python Version)
 
 * Download latest release
@@ -41,4 +51,3 @@ yours can be logged, neither this nor any other IP block software can protect yo
      * Make your Torrent app point to your webserver like so: http://myserver.com/list.txt to download the newly generated list
 
 Special thanks to [alphapapa](https://github.com/alphapapa) for the idea behind the design of the new script.
-
