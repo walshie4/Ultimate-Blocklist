@@ -36,15 +36,15 @@ make docker
 
 ##Shell Verison
 
- * *Generate a local brand-new list*
+ * **Generate a local brand-new list**
      * Run using `./UpdateList.sh`
      * `-c path_to_transmission_conf_dir` (if you use your system's default location, this option is unnecessary)
      * `-z` flag will create gzipped file ( transmission daemon 2.84 won't load gzipped file properly )
      * Note: You can find your config directory [here](https://trac.transmissionbt.com/wiki/ConfigFiles)
      * Your blocklist will be loaded the next time you start Transmission
- * *Use a pre-generated list*
+ * **Use a pre-generated list**
      * The list is hosted and available [here](https://www.dropbox.com/s/2f8irg93zgglh2d/blocklist.txt?dl=1).
- * *Setup on a webserver*
+ * **Setup on a webserver**
      * Upload the folder content (or clone this repo) to your webserver
      * Make sure the permission are right (755) for the scripts
      * Add to your crontab
@@ -56,7 +56,7 @@ Special thanks to [alphapapa](https://github.com/alphapapa) for the idea behind 
 
 ##Dropbox Version
 
-* *Build with [Docker](#dropbox-version)*
+* **Build with [Docker](#dropbox-version)**
 
 * Setup a cron job to run the script using docker and upload to Dropbox
 using the environment variable `DROPBOX_ACCESS_TOKEN`.
