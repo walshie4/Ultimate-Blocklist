@@ -43,10 +43,7 @@ make docker
      * Note: You can find your config directory [here](https://trac.transmissionbt.com/wiki/ConfigFiles)
      * Your blocklist will be loaded the next time you start Transmission
  * <b>Use a pre-generated list</b>
-     * The list is hosted and available [here](https://gist.github.com/walshie4/6648a23223db413d3b15).
-       Unfortunately the file is so large that gist can't even show the whole thing properly. So you'll have to download
-       it and move it in to position manually. (see above note)
-        * Updated 12/7/2014
+     * The list is hosted and available [here](https://www.dropbox.com/s/2f8irg93zgglh2d/blocklist.txt?dl=1).
  * <b>Setup on a webserver</b>
      * Upload the folder content (or clone this repo) to your webserver
      * Make sure the permission are right (755) for the scripts

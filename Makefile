@@ -1,8 +1,9 @@
 docker: clean
 	-docker rm -f ubl
-	docker build --no-cache --tag ubl .
-	docker run -it --name ubl ubl
+	docker build --no-cache --tag voxxit/ubl .
+	docker run -it --name ubl voxxit/ubl
 	docker cp ubl:/usr/src/app/blocklist.txt .
+	docker rm -f ubl
 test: clean
 	python UltimateBlockList.py
 clean:
