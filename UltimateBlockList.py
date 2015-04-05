@@ -10,6 +10,13 @@ from bs4 import BeautifulSoup as mksoup
 import gzip
 import os
 
+token = os.getenv('DROPBOX_ACCESS_TOKEN')
+
+if token:
+    from dropbox.client import DropboxClient
+
+    db_client = DropboxClient(token)
+
 BASE = "https://www.iblocklist.com"
 
 def get_value_from(url):
@@ -49,3 +56,8 @@ if __name__=="__main__":
         else:#download and add this sucker
             process(value)
 
+    if token:
+        file = open('blocklist.txt', 'rb')
+        response = db_client.put_file('/blocklist.txt', file, overwrite=True)
+
+        print 'Uploaded to Dropbox!'
