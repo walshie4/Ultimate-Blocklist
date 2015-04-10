@@ -13,3 +13,6 @@ pull: clean
 push: clean
 	git push origin master
 update: pull push
+reqs: clean
+	pip freeze > requirements.txt
+
