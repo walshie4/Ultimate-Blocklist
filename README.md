@@ -30,7 +30,7 @@ make docker
 * Download latest release
 * (optional) Create a virtual environment ``virtualenv --no-site-packages env``
 * (optional) Activate the virtual environment ``source env/bin/activate``
-* Install the dependencies ``pip install -r requirements.pip``
+* Install the dependencies ``pip install -r requirements.txt``
 * Run `python UltimateBlockList.py`
 * Wait and your blocklist will be available in `blocklist.txt` when the script exits
 
