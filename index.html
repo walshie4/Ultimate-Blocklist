@@ -1,36 +1,35 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Ultimate-blocklist by walshie4</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Ultimate-blocklist</h1>
-        <p>A super blocklist made from the most popular ones on the web!</p>
-        <p class="view"><a href="https://github.com/walshie4/Ultimate-Blocklist">View the Project on GitHub <small>walshie4/Ultimate-Blocklist</small></a></p>
-        <ul>
-          <li><a href="https://github.com/walshie4/Ultimate-Blocklist/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/walshie4/Ultimate-Blocklist/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/walshie4/Ultimate-Blocklist">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
+    <section class="page-header">
+      <h1 class="project-name">Ultimate-blocklist</h1>
+      <h2 class="project-tagline">A super blocklist made from the most popular ones on the web!</h2>
+      <a href="https://github.com/walshie4/Ultimate-Blocklist" class="btn">View on GitHub</a>
+      <a href="https://github.com/walshie4/Ultimate-Blocklist/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/walshie4/Ultimate-Blocklist/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
 <a id="ultimate-blocklist" class="anchor" href="#ultimate-blocklist" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ultimate-Blocklist</h1>
 
 <p>A super blocklist made from the most popular ones on the web!</p>
+
+<h3>
+<a id="reqs" class="anchor" href="#reqs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reqs:</h3>
+
+<ul>
+<li><code>Python 2.7.8</code></li>
+</ul>
 
 <h3>
 <a id="note" class="anchor" href="#note" aria-hidden="true"><span class="octicon octicon-link"></span></a>Note:</h3>
@@ -39,64 +38,109 @@
 yours can be logged, neither this nor any other IP block software can protect you from that. Read more <a href="http://www.reddit.com/r/torrents/comments/17gold">here</a>.</p>
 
 <h2>
-<a id="how-to-python-version" class="anchor" href="#how-to-python-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to: (Python Version)</h2>
+<a id="docker-version" class="anchor" href="#docker-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Docker Version</h2>
+
+<pre><code>docker build -t ubl .
+docker run -it --name ubl ubl
+docker cp ubl:/usr/src/app/blocklist.txt .
+</code></pre>
+
+<p>or</p>
+
+<pre><code>make docker
+</code></pre>
+
+<h2>
+<a id="python-version" class="anchor" href="#python-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Python Version</h2>
 
 <ul>
 <li>Download latest release</li>
+<li>(optional) Create a virtual environment <code>virtualenv --no-site-packages env</code>
+</li>
+<li>(optional) Activate the virtual environment <code>source env/bin/activate</code>
+</li>
+<li>Install the dependencies <code>pip install -r requirements.txt</code>
+</li>
 <li>Run <code>python UltimateBlockList.py</code>
 </li>
 <li>Wait and your blocklist will be available in <code>blocklist.txt</code> when the script exits</li>
 </ul>
 
 <h2>
-<a id="how-to-use-shell-script-verison" class="anchor" href="#how-to-use-shell-script-verison" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use: (Shell-Script Verison)</h2>
+<a id="shell-verison" class="anchor" href="#shell-verison" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shell Verison</h2>
 
 <ul>
 <li>
-<b>Generate a local brand-new list</b>
+<strong>Generate a local brand-new list</strong>
 
 <ul>
 <li>Run using <code>./UpdateList.sh</code>
 </li>
-<li>Move the <code>lists.txt</code> file to the <code>/blocklists/</code> directory</li>
-<li>Note: You can find your <code>/blocklists/</code> directory <a href="https://trac.transmissionbt.com/wiki/ConfigFiles">here</a>
+<li>
+<code>-c path_to_transmission_conf_dir</code> (if you use your system's default location, this option is unnecessary)</li>
+<li>
+<code>-z</code> flag will create gzipped file ( transmission daemon 2.84 won't load gzipped file properly )</li>
+<li>Note: You can find your config directory <a href="https://trac.transmissionbt.com/wiki/ConfigFiles">here</a>
 </li>
 <li>Your blocklist will be loaded the next time you start Transmission</li>
 </ul>
 </li>
 <li>
-<b>Use a pre-generated list</b>
+<strong>Use a pre-generated list</strong>
 
 <ul>
-<li>The list is hosted and available at the url <code>http://download1979.mediafire.com/ocqugqyet8kg/ep841wv4aef2zwd/list.txt</code>
-
-<ul>
-<li>Updated 3/16/2014</li>
-</ul>
-</li>
+<li>The list is hosted and available <a href="https://www.dropbox.com/s/2f8irg93zgglh2d/blocklist.txt?dl=1">here</a>.</li>
 </ul>
 </li>
 <li>
-<b>Setup on a webserver</b>
+<strong>Setup on a webserver</strong>
 
 <ul>
 <li>Upload the folder content (or clone this repo) to your webserver</li>
 <li>Make sure the permission are right (755) for the scripts</li>
 <li>Add to your crontab
-    Daily: 00 00 * * * ./UpdateList.sh (or ./UpdateListOSX.sh if on a OSX machine)</li>
+    Daily: 00 00 * * * ./UpdateList.sh</li>
 <li>Make your Torrent app point to your webserver like so: <a href="http://myserver.com/list.txt">http://myserver.com/list.txt</a> to download the newly generated list</li>
 </ul>
 </li>
 </ul>
 
 <p>Special thanks to <a href="https://github.com/alphapapa">alphapapa</a> for the idea behind the design of the new script.</p>
-      </section>
-    </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/walshie4">walshie4</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
+<h2>
+<a id="dropbox-version" class="anchor" href="#dropbox-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dropbox Version</h2>
+
+<ul>
+<li><p><strong>Build with <a href="#docker-version">Docker</a></strong></p></li>
+<li>
+<p>Setup a cron job to run the script using docker and upload to Dropbox
+using the environment variable <code>DROPBOX_ACCESS_TOKEN</code>.</p>
+
+<ul>
+<li>Ex. <code>0 5 * * * /usr/bin/docker run --rm -it -e DROPBOX_ACCESS_TOKEN="..." ubl</code>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>Thanks to <a href="//github.com/voxxit">voxxit</a> for helping add this feature</p>
+
+<hr>
+
+<h2>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h2>
+
+<p>Please check <a href="//github.com/walshie4/Ultimate-Blocklist/graphs/contributors">here</a> for a full list of contributors.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/walshie4/Ultimate-Blocklist">Ultimate-blocklist</a> is maintained by <a href="https://github.com/walshie4">walshie4</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
+
