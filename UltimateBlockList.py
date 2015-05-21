@@ -24,7 +24,12 @@ def get_value_from(url):
     return str(soup.find_all("input")[-1]).split("\"")[-2]
 
 def process(url):
-    handle = urllib.urlopen(url)
+    try:
+        handle = urllib.urlopen(url)
+    except Exception as e:
+        print("URL open failed! Exception following:")
+        print(e)
+        return
     with open('ultBlockList.tmp.gz', 'wb') as out:
         while True:
             data = handle.read(1024)
