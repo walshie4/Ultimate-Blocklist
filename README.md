@@ -3,10 +3,6 @@ Ultimate-Blocklist
 
 A super blocklist made from the most popular ones on the web!
 
-###Reqs:
-
-* `Python 2.7.8`
-
 ###Note:
 When using the BitTorrent protocol using blocklists does *nothing*! If you are a part of the swarm of ip's
 yours can be logged, neither this nor any other IP block software can protect you from that. Read more [here](http://www.reddit.com/r/torrents/comments/17gold).
@@ -26,6 +22,12 @@ make docker
 ```
 
 ##Python Version
+
+###Reqs:
+
+* `Python 2.7.8`
+
+---
 
 * Download latest release
 * (optional) Create a virtual environment ``virtualenv --no-site-packages env``
