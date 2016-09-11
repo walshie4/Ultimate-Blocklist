@@ -9,37 +9,37 @@
 LIST="list.txt"     #This is the name of the final list file
 
 while getopts ":c:zh" opt; do
-	case $opt in
-		c)
-			CONF_DIR=$OPTARG
-			;;
-		z)
-			zip=true
-			;;
-			
-		h)
-      			echo -ne "Usage: -c config dir\n\t-z gzip result file ( doesn't work with daemon 2.84 )\n"
-      			exit 0
-      			;;
-		\?)
-    			echo "Invalid option: -$OPTARG" >&2
-    			exit 1
-    			;;
-    		:)
-      			echo "Option -$OPTARG requires an argument." >&2
-      			exit 1
-      			;;
-	esac
+  case $opt in
+    c)
+      CONF_DIR=$OPTARG
+      ;;
+    z)
+      zip=true
+      ;;
+      
+    h)
+            echo -ne "Usage: -c config dir\n\t-z gzip result file ( doesn't work with daemon 2.84 )\n"
+            exit 0
+            ;;
+    \?)
+          echo "Invalid option: -$OPTARG" >&2
+          exit 1
+          ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            exit 1
+            ;;
+  esac
 done
 
 if [[ ! -z $CONF_DIR ]]; then
-	path_to_config=$CONF_DIR
+  path_to_config=$CONF_DIR
 
 elif [[ $OSTYPE =~ "darwin" ]]; then
-	path_to_config=$HOME/Library/Application\ Support/Transmission
+  path_to_config=$HOME/Library/Application\ Support/Transmission
 
 else
-	path_to_config=$HOME/.config/transmission
+  path_to_config=$HOME/.config/transmission
 fi
 
 blocklist_path=$path_to_config/blocklists
@@ -71,54 +71,54 @@ URLs=("http://list.iblocklist.com/?list=bt_level1&fileformat=p2p&archiveformat=g
 #---END CONFIG---
 
 if tty -s; then
-	info() {
-		echo "$@"
-	}
+  info() {
+    echo "$@"
+  }
 else # we're non-interactive, no output needed
-	info() {
-		true
-	}
+  info() {
+    true
+  }
 fi
 
 die() {
-	echo "$@"
-	exit 1
+  echo "$@"
+  exit 1
 }
 
 rm -f $LIST #delete the old list
 
 if wget=$(command -v wget); then
-	download() { 
-		$wget -q -O "list.gz" "$1"
-	}
+  download() { 
+    $wget -q -O "list.gz" "$1"
+  }
 elif curl=$(command -v curl); then
-	download() { 
-		$curl "$1" -L -o "list.gz"
-	}
+  download() { 
+    $curl "$1" -L -o "list.gz"
+  }
 else
-	die "$0: 'wget' or 'curl' required but not found. Aborting."
+  die "$0: 'wget' or 'curl' required but not found. Aborting."
 fi
 
 index=0
 for url in "${URLs[@]}"; do
         title="${TITLEs[$index]}"
-	    info "Downloading list $title"
-	    download "$url" || die "Cannot download from $url"
-	    info "Adding IP's to list file..."
-	    gunzip -c "list.gz" >> "$LIST"  || die "Cannot append to list" #append to list file
-	    rm "list.gz" || die "Cannot remove downloaded file"
-	    info ""
+      info "Downloading list $title"
+      download "$url" || die "Cannot download from $url"
+      info "Adding IP's to list file..."
+      gunzip -c "list.gz" >> "$LIST"  || die "Cannot append to list" #append to list file
+      rm "list.gz" || die "Cannot remove downloaded file"
+      info ""
         index=$((index+=1))
 done
 
 if [[ ! -z $zip ]]; then
-	info "Zipping..."
-	gzip -c $LIST > list.gz || die "Cannot gzip"
-	info "Copying zipped list to $blocklist_path"
-	cp list.gz "$blocklist_path/" || die "Cannot copy to $blocklist_path/"
+  info "Zipping..."
+  gzip -c $LIST > list.gz || die "Cannot gzip"
+  info "Copying zipped list to $blocklist_path"
+  cp list.gz "$blocklist_path/" || die "Cannot copy to $blocklist_path/"
 else
-	info "Copying list to $blocklist_path"
-	cp list.txt "$blocklist_path/" || die "Cannot copy to $blocklist_path/"
+  info "Copying list to $blocklist_path"
+  cp list.txt "$blocklist_path/" || die "Cannot copy to $blocklist_path/"
 fi
 
 wc -l $LIST || die "Cannot count lines" #print out some list stats
