@@ -35,11 +35,10 @@ def process(url):
             data = handle.read(1024)
             if len(data) == 0: break
             out.write(data)
-    contents = gzip.GzipFile('ultBlockList.tmp.gz')
-    f = open("blocklist.txt", "a+")#TODO add check for if it exists
-    for line in contents:
-        f.write(line)
-    f.close()
+    with gzip.open('ultBlockList.tmp.gz') as contents:
+        with open("blocklist.txt", "a+") as f:
+            for line in contents:
+                f.write(line)
     os.remove('ultBlockList.tmp.gz')
 
 if __name__=="__main__":
