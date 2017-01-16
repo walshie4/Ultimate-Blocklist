@@ -44,9 +44,6 @@ make docker
      * `-z` flag will create gzipped file ( transmission daemon 2.84 won't load gzipped file properly )
      * Note: You can find your config directory [here](https://trac.transmissionbt.com/wiki/ConfigFiles)
      * Your blocklist will be loaded the next time you start Transmission
- * **Use a pre-generated list**
-     * The list is hosted and available [here](https://www.dropbox.com/s/2f8irg93zgglh2d/blocklist.txt?dl=1).
-     * `https://www.dropbox.com/s/2f8irg93zgglh2d/blocklist.txt?dl=1`
  * **Setup on a webserver**
      * Upload the folder content (or clone this repo) to your webserver
      * Make sure the permission are right (755) for the scripts
