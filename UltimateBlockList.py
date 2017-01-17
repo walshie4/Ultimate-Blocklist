@@ -48,7 +48,7 @@ if __name__=="__main__":
     for row in soup.find_all("tr")[1:]:#for each table row
         section = str(list(row.children)[0])
         pieces = section.split("\"")
-        links[pieces[2].split("<")[0][1:]] = pieces[1]
+        links[pieces[4].split("<")[0][1:]] = pieces[3]
 
     for link in links:#download and combine files
         print "Downloading " + link + " blocklist."
