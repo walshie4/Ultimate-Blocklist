@@ -3,11 +3,11 @@ Ultimate-Blocklist
 
 A super blocklist made from the most popular ones on the web!
 
-###Note:
+### Note:
 When using the BitTorrent protocol using blocklists does *nothing*! If you are a part of the swarm of ip's
 yours can be logged, neither this nor any other IP block software can protect you from that. Read more [here](http://www.reddit.com/r/torrents/comments/17gold).
 
-##Docker Version
+## Docker Version
 
 ```
 docker build -t ubl .
@@ -21,9 +21,9 @@ or
 make docker
 ```
 
-##Python Version
+## Python Version
 
-###Reqs:
+### Reqs:
 
 * `Python 2.7.8`
 
@@ -36,7 +36,7 @@ make docker
 * Run `python UltimateBlockList.py`
 * Wait and your blocklist will be available in `blocklist.txt` when the script exits
 
-##Shell Verison
+## Shell Verison
 
  * **Generate a local brand-new list**
      * Run using `./UpdateList.sh`
@@ -54,7 +54,7 @@ make docker
 Special thanks to [alphapapa](https://github.com/alphapapa) for the idea behind the design of the new script.
 
 
-##Dropbox Version
+## Dropbox Version
 
 * **Build with [Docker](#docker-version)**
 
@@ -66,7 +66,7 @@ Thanks to [voxxit](//github.com/voxxit) for helping add this feature
 
 ---
 
-##Contributors
+## Contributors
 
 Please check [here](//github.com/walshie4/Ultimate-Blocklist/graphs/contributors) for a full list of contributors.
 
