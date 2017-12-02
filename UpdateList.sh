@@ -16,7 +16,7 @@ while getopts ":c:zh" opt; do
     z)
       zip=true
       ;;
-      
+
     h)
             echo -ne "Usage: -c config dir\n\t-z gzip result file ( doesn't work with daemon 2.84 )\n"
             exit 0
@@ -88,11 +88,11 @@ die() {
 rm -f $LIST #delete the old list
 
 if wget=$(command -v wget); then
-  download() { 
+  download() {
     $wget -q -O "list.gz" "$1"
   }
 elif curl=$(command -v curl); then
-  download() { 
+  download() {
     $curl "$1" -L -o "list.gz"
   }
 else
@@ -110,6 +110,11 @@ for url in "${URLs[@]}"; do
       info ""
         index=$((index+=1))
 done
+
+# remove duplicate entries
+LIST_UNIQUE="unique-$LIST"
+sort -u $LIST > $LIST_UNIQUE
+mv $LIST_UNIQUE $LIST
 
 if [[ ! -z $zip ]]; then
   info "Zipping..."
