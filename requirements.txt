@@ -1,4 +1,4 @@
 beautifulsoup4==4.3.2
 dropbox==2.2.0
-requests==2.5.1
+requests==2.20.0
 urllib3==1.26.5
